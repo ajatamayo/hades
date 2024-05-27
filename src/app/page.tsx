@@ -550,8 +550,9 @@ export default function Home() {
                         {
                           requirement.map((r) => (
                             <button
-                              className="mr-2 mb-2 px-4 py-2 rounded-lg bg-gray-300 text-black"
+                              className={`mr-2 mb-2 px-4 py-2 rounded-lg bg-gray-300 text-black ${slots[r.slot] === r.name ? 'bg-blue-600 text-white' : ''}`}
                               onClick={() => {
+                                if (r.slot === NO_SLOT) return;
                                 setSlots(prevSlots => ({
                                   ...prevSlots,
                                   [r.slot]: r,
