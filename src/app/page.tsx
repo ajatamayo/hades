@@ -477,7 +477,7 @@ export default function Home() {
         <h1 className="mb-4 text-3xl font-semibold">Hades II God Pool Planner</h1>
       </div>
 
-      <div className="mb-6 grid w-full lg:max-w-5xl">
+      <div className="mb-4 grid w-full lg:max-w-5xl">
         <p className="mb-3 text-2xl font-normal">
           Choose 3 or 4 gods
         </p>
@@ -501,7 +501,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mb-6 grid w-full lg:max-w-5xl">
+      <div className="mb-4 grid w-full lg:max-w-5xl">
         <p className="mb-3 text-2xl font-normal">
           Duo boons available
         </p>
@@ -523,8 +523,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mb-6 grid w-full lg:max-w-5xl">
-        <p className="mb-3 text-2xl font-normal">
+      <div className="mb-4 grid w-full lg:max-w-5xl">
+        <p className="mb-1 text-2xl font-normal">
           Requirements
         </p>
         <div className="py-2">
@@ -540,26 +540,28 @@ export default function Home() {
             .filter((duoBoon) => duoBoon.requirements)
             .map((duoBoon) => (
               <div key={duoBoon.boon} className="py-2">
-                {duoBoon.boon}
+                <p className="text-xl">{duoBoon.boon}</p>
                 <p>One of each:</p>
-                <ul>
+                <ul className="ml-2">
                   {duoBoon.requirements.map((requirement) => (
                     <li key={requirement.map((r) => r.name).join(', ')}>
-                      <p>Boons of {requirement[0].god}:</p>
-                      {
-                        requirement.map((r) => (
-                          <button
-                            className="mr-2 mb-2 px-4 py-2 rounded-lg bg-gray-300 text-black"
-                            onClick={() => {
-                              setSlots(prevSlots => ({
-                                ...prevSlots,
-                                [r.slot]: r,
-                              }))
-                            }}>
-                            {r.name}
-                          </button>
-                        ))
-                      }
+                      <p className="ml-4">Boons of {requirement[0].god}:</p>
+                      <div className="ml-6">
+                        {
+                          requirement.map((r) => (
+                            <button
+                              className="mr-2 mb-2 px-4 py-2 rounded-lg bg-gray-300 text-black"
+                              onClick={() => {
+                                setSlots(prevSlots => ({
+                                  ...prevSlots,
+                                  [r.slot]: r,
+                                }))
+                              }}>
+                              {r.name}
+                            </button>
+                          ))
+                        }
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -568,7 +570,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mb-6 grid w-full lg:max-w-5xl">
+      <div className="mb-4 grid w-full lg:max-w-5xl">
         <p className="mb-3 text-2xl font-normal">
           Slots
         </p>
