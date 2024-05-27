@@ -60,6 +60,12 @@ export default function Home() {
   const GAIN_SLOT = 'Gain';
   const NO_SLOT = 'None';
 
+  interface Boon {
+    name: string;
+    slot: string;
+    god: string;
+  }
+
   // Aphrodite Boons
   const FLUTTER_STRIKE = {
     name: 'Flutter Strike',
@@ -454,7 +460,16 @@ export default function Home() {
     { gods: [ZEUS, HERA], boon: KINGS_RANSOM, requirements: [[HEAVEN_STRIKE, HEAVEN_FLOURISH, STORM_RING, THUNDER_SPRINT, IONIC_GAIN], [SWORN_STRIKE, SWORN_FLOURISH, ENGAGEMENT_RING, NEXUS_SPRINT, BORN_GAIN]] },
   ];
 
+  interface Slots {
+    [ATTACK_SLOT]: Boon | null;
+    [SPECIAL_SLOT]: Boon | null;
+    [CAST_SLOT]: Boon | null;
+    [DASH_SLOT]: Boon | null;
+    [GAIN_SLOT]: Boon | null;
+  }
+
   const [selectedGods, setSelectedGods] = useState<string[]>([]);
+  const [slots, setSlots] = useState<Slots>({ [ATTACK_SLOT]: null, [SPECIAL_SLOT]: null, [CAST_SLOT]: null, [DASH_SLOT]: null, [GAIN_SLOT]: null });
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
@@ -530,7 +545,21 @@ export default function Home() {
                 <ul>
                   {duoBoon.requirements.map((requirement) => (
                     <li key={requirement.map((r) => r.name).join(', ')}>
-                      {requirement.map((r) => r.name).join(', ')}
+                      <p>Boons of {requirement[0].god}:</p>
+                      {
+                        requirement.map((r) => (
+                          <button
+                            className="mr-2 mb-2 px-4 py-2 rounded-lg bg-gray-300 text-black"
+                            onClick={() => {
+                              setSlots(prevSlots => ({
+                                ...prevSlots,
+                                [r.slot]: r,
+                              }))
+                            }}>
+                            {r.name}
+                          </button>
+                        ))
+                      }
                     </li>
                   ))}
                 </ul>
@@ -543,7 +572,25 @@ export default function Home() {
         <p className="mb-3 text-2xl font-normal">
           Slots
         </p>
+        <div className="flex flex-wrap">
+          {Object.entries(slots).map(([slot, boon]) => (
+            <button
+              key={slot}
+              className={`mr-2 mb-2 px-4 py-2 rounded-lg ${boon ? 'bg-blue-600 text-white' : 'bg-gray-300 text-black'}`}
+              onClick={() => {
+                if (boon) {
+                  setSlots(prevSlots => ({
+                    ...prevSlots,
+                    [slot]: null,
+                  }));
+                }
+              }}
+            >
+              {boon ? boon.name : slot}
+            </button>
+          ))}
+        </div>
       </div>
-    </main>
+    </main >
   );
 }
