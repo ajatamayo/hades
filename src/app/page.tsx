@@ -23,36 +23,66 @@ export default function Home() {
     ZEUS,
   ];
 
+  const SUNNY_DISPOSITION = 'Sunny Disposition'
+  const HEARTY_APPETITE = 'Hearty Appetite'
+  const SOFT_CARESS = 'Soft Caress'
+  const SOUL_MATE = 'Soul Mate'
+  const BURNING_DESIRE = 'Burning Desire'
+  const ISLAND_GETAWAY = 'Island Getaway'
+  const ROMANTIC_SPARK = 'Romantic Spark'
+  const TORRENTIAL_DOWNPOUR = 'Torrential Downpour'
+  const STELLAR_SLAM = 'Stellar Slam'
+  const SUN_WORSHIPER = 'Sun Worshiper'
+  const PHOENIX_SKIN = 'Phoenix Skin'
+  const BEACH_BALL = 'Beach Ball'
+  const GLORIOUS_DISASTER = 'Glorious Disaster'
+  const ROOM_TEMPERATURE = 'Room Temperature'
+  const CHERISHED_HEIRLOOM = 'Cherished Heirloom'
+  const FREEZER_BURN = 'Freezer Burn'
+  const NATURAL_SELECTION = 'Natural Selection'
+  const APOCALYPTIC_STORM = 'Apocalyptic Storm'
+  const SPITEFUL_STRENGTH = 'Spiteful Strength'
+  const CHAIN_REACTION = 'Chain Reaction'
+  const SEISMIC_HAMMER = 'Seismic Hammer'
+  const MASTER_CONDUCTOR = 'Master Conductor'
+  const FUNERAL_PYRE = 'Funeral Pyre'
+  const GOLDEN_RULE = 'Golden Rule'
+  const QUEENS_RANSOM = 'Queen\'s Ransom'
+  const SCALDING_VAPOR = 'Scalding Vapor'
+  const THERMAL_DYNAMICS = 'Thermal Dynamics'
+  const KILLER_CURRENT = 'Killer Current'
+  const KINGS_RANSOM = 'King\'s Ransom'
+
   const duoBoons = [
-    { gods: [APHRODITE, APOLLO], boon: 'Sunny Disposition' },
-    { gods: [APHRODITE, DEMETER], boon: 'Hearty Appetite' },
-    { gods: [APHRODITE, HEPHAESTUS], boon: 'Soft Caress' },
-    { gods: [APHRODITE, HERA], boon: 'Soul Mate' },
-    { gods: [APHRODITE, HESTIA], boon: 'Burning Desire' },
-    { gods: [APHRODITE, POSEIDON], boon: 'Island Getaway' },
-    { gods: [APHRODITE, ZEUS], boon: 'Romantic Spark' },
-    { gods: [APOLLO, DEMETER], boon: 'Torrential Downpour' },
-    { gods: [APOLLO, HEPHAESTUS], boon: 'Stellar Slam' },
-    { gods: [APOLLO, HERA], boon: 'Sun Worshiper' },
-    { gods: [APOLLO, HESTIA], boon: 'Phoenix Skin' },
-    { gods: [APOLLO, POSEIDON], boon: 'Beach Ball' },
-    { gods: [APOLLO, ZEUS], boon: 'Glorious Disaster' },
-    { gods: [DEMETER, HEPHAESTUS], boon: 'Room Temperature' },
-    { gods: [DEMETER, HERA], boon: 'Cherished Heirloom' },
-    { gods: [DEMETER, HESTIA], boon: 'Freezer Burn Home' },
-    { gods: [DEMETER, POSEIDON], boon: 'Natural Selection' },
-    { gods: [DEMETER, ZEUS], boon: 'Apocalyptic Storm' },
-    { gods: [HEPHAESTUS, HERA], boon: 'Spiteful Strength' },
-    { gods: [HEPHAESTUS, HESTIA], boon: 'Chain Reaction' },
-    { gods: [HEPHAESTUS, POSEIDON], boon: 'Seismic Hammer' },
-    { gods: [HEPHAESTUS, ZEUS], boon: 'Master Conductor' },
-    { gods: [HERA, HESTIA], boon: 'Funeral Pyre' },
-    { gods: [HERA, POSEIDON], boon: 'Golden Rule' },
-    { gods: [HERA, ZEUS], boon: 'Queen\'s Ransom' },
-    { gods: [HESTIA, POSEIDON], boon: 'Scalding Vapor' },
-    { gods: [HESTIA, ZEUS], boon: 'Thermal Dynamics' },
-    { gods: [POSEIDON, ZEUS], boon: 'Killer Current' },
-    { gods: [ZEUS, HERA], boon: 'King\'s Ransom' },
+    { gods: [APHRODITE, APOLLO], boon: SUNNY_DISPOSITION },
+    { gods: [APHRODITE, DEMETER], boon: HEARTY_APPETITE },
+    { gods: [APHRODITE, HEPHAESTUS], boon: SOFT_CARESS },
+    { gods: [APHRODITE, HERA], boon: SOUL_MATE },
+    { gods: [APHRODITE, HESTIA], boon: BURNING_DESIRE },
+    { gods: [APHRODITE, POSEIDON], boon: ISLAND_GETAWAY },
+    { gods: [APHRODITE, ZEUS], boon: ROMANTIC_SPARK },
+    { gods: [APOLLO, DEMETER], boon: TORRENTIAL_DOWNPOUR },
+    { gods: [APOLLO, HEPHAESTUS], boon: STELLAR_SLAM },
+    { gods: [APOLLO, HERA], boon: SUN_WORSHIPER },
+    { gods: [APOLLO, HESTIA], boon: PHOENIX_SKIN },
+    { gods: [APOLLO, POSEIDON], boon: BEACH_BALL },
+    { gods: [APOLLO, ZEUS], boon: GLORIOUS_DISASTER },
+    { gods: [DEMETER, HEPHAESTUS], boon: ROOM_TEMPERATURE },
+    { gods: [DEMETER, HERA], boon: CHERISHED_HEIRLOOM },
+    { gods: [DEMETER, HESTIA], boon: FREEZER_BURN },
+    { gods: [DEMETER, POSEIDON], boon: NATURAL_SELECTION },
+    { gods: [DEMETER, ZEUS], boon: APOCALYPTIC_STORM },
+    { gods: [HEPHAESTUS, HERA], boon: SPITEFUL_STRENGTH },
+    { gods: [HEPHAESTUS, HESTIA], boon: CHAIN_REACTION },
+    { gods: [HEPHAESTUS, POSEIDON], boon: SEISMIC_HAMMER },
+    { gods: [HEPHAESTUS, ZEUS], boon: MASTER_CONDUCTOR },
+    { gods: [HERA, HESTIA], boon: FUNERAL_PYRE },
+    { gods: [HERA, POSEIDON], boon: GOLDEN_RULE },
+    { gods: [HERA, ZEUS], boon: QUEENS_RANSOM },
+    { gods: [HESTIA, POSEIDON], boon: SCALDING_VAPOR },
+    { gods: [HESTIA, ZEUS], boon: THERMAL_DYNAMICS },
+    { gods: [POSEIDON, ZEUS], boon: KILLER_CURRENT },
+    { gods: [ZEUS, HERA], boon: KINGS_RANSOM },
   ];
 
   const [selectedGods, setSelectedGods] = useState([]);
