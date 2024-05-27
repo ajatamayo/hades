@@ -85,7 +85,7 @@ export default function Home() {
     { gods: [ZEUS, HERA], boon: KINGS_RANSOM },
   ];
 
-  const [selectedGods, setSelectedGods] = useState([]);
+  const [selectedGods, setSelectedGods] = useState<string[]>([]);
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
