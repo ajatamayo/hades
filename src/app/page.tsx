@@ -53,15 +53,53 @@ export default function Home() {
   const KILLER_CURRENT = 'Killer Current'
   const KINGS_RANSOM = 'King\'s Ransom'
 
+  const ATTACK_SLOT = 'Attack';
+  const SPECIAL_SLOT = 'Special';
+  const CAST_SLOT = 'Cast';
+  const DASH_SLOT = 'Dash';
+  const GAIN_SLOT = 'Gain';
+
+  const ARCTIC_RING = {
+    name: 'Arctic Ring',
+    slot: CAST_SLOT,
+    god: DEMETER,
+  };
+  const FRIGID_SPRINT = {
+    name: 'Frigid Sprint',
+    slot: DASH_SLOT,
+    god: DEMETER,
+  };
+  const TRANQUIL_GAIN = {
+    name: 'Tranquil Gain',
+    slot: GAIN_SLOT,
+    god: DEMETER,
+  };
+  const SOLAR_RING = {
+    name: 'Solar Ring',
+    slot: CAST_SLOT,
+    god: APOLLO,
+  };
+  const BLINDING_SPRINT = {
+    name: 'Blinding Sprint',
+    slot: DASH_SLOT,
+    god: APOLLO,
+  };
+  const LUCID_GAIN = {
+    name: 'Lucid Gain',
+    slot: GAIN_SLOT,
+    god: APOLLO,
+  };
+
+
   const duoBoons = [
-    { gods: [APHRODITE, APOLLO], boon: SUNNY_DISPOSITION },
+    { gods: [APHRODITE, APOLLO], boon: SUNNY_DISPOSITION, requirements: [] },
     { gods: [APHRODITE, DEMETER], boon: HEARTY_APPETITE },
     { gods: [APHRODITE, HEPHAESTUS], boon: SOFT_CARESS },
     { gods: [APHRODITE, HERA], boon: SOUL_MATE },
     { gods: [APHRODITE, HESTIA], boon: BURNING_DESIRE },
     { gods: [APHRODITE, POSEIDON], boon: ISLAND_GETAWAY },
     { gods: [APHRODITE, ZEUS], boon: ROMANTIC_SPARK },
-    { gods: [APOLLO, DEMETER], boon: TORRENTIAL_DOWNPOUR },
+    { gods: [APOLLO, DEMETER], boon: TORRENTIAL_DOWNPOUR, requirements: [[ARCTIC_RING, FRIGID_SPRINT, TRANQUIL_GAIN], [SOLAR_RING, BLINDING_SPRINT, LUCID_GAIN]] },
     { gods: [APOLLO, HEPHAESTUS], boon: STELLAR_SLAM },
     { gods: [APOLLO, HERA], boon: SUN_WORSHIPER },
     { gods: [APOLLO, HESTIA], boon: PHOENIX_SKIN },
@@ -144,7 +182,29 @@ export default function Home() {
           Requirements
         </p>
         <div className="py-2">
-          Choose planned boons
+          {
+            selectedGods.length < 2 ? (
+              <div className="py-2">
+                Select 3 or 4 gods first
+              </div>
+            ) : null
+          }
+          {duoBoons
+            .filter((duoBoon) => duoBoon.gods.every((god) => selectedGods.includes(god)))
+            .filter((duoBoon) => duoBoon.requirements)
+            .map((duoBoon) => (
+              <div key={duoBoon.boon} className="py-2">
+                {duoBoon.boon}
+                <p>One of each:</p>
+                <ul>
+                  {duoBoon.requirements.map((requirement) => (
+                    <li key={requirement.map((r) => r.name).join(', ')}>
+                      {requirement.map((r) => r.name).join(', ')}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
         </div>
       </div>
 
