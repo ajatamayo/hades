@@ -7,9 +7,8 @@ provider "google" {
   region  = "us-central1"
 }
 
-resource "google_billing_subaccount" "subaccount" {
-  display_name           = "Hades"
-  master_billing_account = var.master_billing_account
+resource "google_billing_project_info" "project_billing" {
+  billing_account = var.master_billing_account
 }
 
 resource "google_service_account" "main_sa" {
@@ -46,51 +45,19 @@ resource "google_storage_bucket_iam_binding" "public_access" {
   ]
 }
 
-resource "google_project_service" "secrets_manager" {
-  service = "secretmanager.googleapis.com"
-}
-
-resource "google_secret_manager_secret" "namecheap" {
-  secret_id = "credentials"
-  replication {
-    auto {}
-  }
-}
-
-resource "google_secret_manager_secret_version" "credentials" {
-  secret = google_secret_manager_secret.namecheap.secret_id
-  secret_data = jsonencode({
-    username = var.namecheap_username,
-    api_key  = var.namecheap_api_key
-  })
-}
-
-resource "google_secret_manager_secret" "google" {
-  secret_id = "credentials"
-  replication {
-    auto {}
-  }
-}
-resource "google_secret_manager_secret_version" "billing" {
-  secret = google_secret_manager_secret.google.secret_id
-  secret_data = jsonencode({
-    master_billing_account = var.master_billing_account
-  })
-}
-
 provider "namecheap" {
+  user_name = var.namecheap_username
   api_user  = var.namecheap_username
   api_key   = var.namecheap_api_key
-  user_name = var.namecheap_username
 }
 
 resource "namecheap_domain_records" "subdomain" {
   domain = "atamayo.io"
-  mode   = "OVERWRITE"
+  mode   = "MERGE"
 
   record {
     hostname = "hades"
-    type     = "A"
-    address  = google_storage_bucket.static_site.name
+    type     = "CNAME"
+    address  = "c.storage.googleapis.com"
   }
 }
