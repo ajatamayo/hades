@@ -3,62 +3,57 @@
 import { useState } from "react";
 
 export default function Home() {
-  const APHRODITE = 'Aphrodite';
-  const APOLLO = 'Apollo';
-  const DEMETER = 'Demeter';
-  const HEPHAESTUS = 'Hephaestus';
-  const HERA = 'Hera';
-  const HESTIA = 'Hestia';
-  const POSEIDON = 'Poseidon';
-  const ZEUS = 'Zeus';
+  enum God {
+    APHRODITE = 'Aphrodite',
+    APOLLO = 'Apollo',
+    DEMETER = 'Demeter',
+    HEPHAESTUS = 'Hephaestus',
+    HERA = 'Hera',
+    HESTIA = 'Hestia',
+    POSEIDON = 'Poseidon',
+    ZEUS = 'Zeus'
+  }
 
   const gods = [
-    APHRODITE,
-    APOLLO,
-    DEMETER,
-    HEPHAESTUS,
-    HERA,
-    HESTIA,
-    POSEIDON,
-    ZEUS,
+    God.APHRODITE,
+    God.APOLLO,
+    God.DEMETER,
+    God.HEPHAESTUS,
+    God.HERA,
+    God.HESTIA,
+    God.POSEIDON,
+    God.ZEUS,
   ];
 
-  const SUNNY_DISPOSITION = 'Sunny Disposition'
-  const HEARTY_APPETITE = 'Hearty Appetite'
-  const SOFT_CARESS = 'Soft Caress'
-  const SOUL_MATE = 'Soul Mate'
-  const BURNING_DESIRE = 'Burning Desire'
-  const ISLAND_GETAWAY = 'Island Getaway'
-  const ROMANTIC_SPARK = 'Romantic Spark'
-  const TORRENTIAL_DOWNPOUR = 'Torrential Downpour'
-  const STELLAR_SLAM = 'Stellar Slam'
-  const SUN_WORSHIPER = 'Sun Worshiper'
-  const PHOENIX_SKIN = 'Phoenix Skin'
-  const BEACH_BALL = 'Beach Ball'
-  const GLORIOUS_DISASTER = 'Glorious Disaster'
-  const ROOM_TEMPERATURE = 'Room Temperature'
-  const CHERISHED_HEIRLOOM = 'Cherished Heirloom'
-  const FREEZER_BURN = 'Freezer Burn'
-  const NATURAL_SELECTION = 'Natural Selection'
-  const APOCALYPTIC_STORM = 'Apocalyptic Storm'
-  const SPITEFUL_STRENGTH = 'Spiteful Strength'
-  const CHAIN_REACTION = 'Chain Reaction'
-  const SEISMIC_HAMMER = 'Seismic Hammer'
-  const MASTER_CONDUCTOR = 'Master Conductor'
-  const FUNERAL_PYRE = 'Funeral Pyre'
-  const GOLDEN_RULE = 'Golden Rule'
-  const QUEENS_RANSOM = 'Queen\'s Ransom'
-  const SCALDING_VAPOR = 'Scalding Vapor'
-  const THERMAL_DYNAMICS = 'Thermal Dynamics'
-  const KILLER_CURRENT = 'Killer Current'
-  const KINGS_RANSOM = 'King\'s Ransom'
-
-  const ATTACK_SLOT = 'Attack';
-  const SPECIAL_SLOT = 'Special';
-  const CAST_SLOT = 'Cast';
-  const DASH_SLOT = 'Dash';
-  const GAIN_SLOT = 'Gain';
-  const NO_SLOT = 'None';
+  const SUNNY_DISPOSITION = 'Sunny Disposition';
+  const HEARTY_APPETITE = 'Hearty Appetite';
+  const SOFT_CARESS = 'Soft Caress';
+  const SOUL_MATE = 'Soul Mate';
+  const BURNING_DESIRE = 'Burning Desire';
+  const ISLAND_GETAWAY = 'Island Getaway';
+  const ROMANTIC_SPARK = 'Romantic Spark';
+  const TORRENTIAL_DOWNPOUR = 'Torrential Downpour';
+  const STELLAR_SLAM = 'Stellar Slam';
+  const SUN_WORSHIPER = 'Sun Worshiper';
+  const PHOENIX_SKIN = 'Phoenix Skin';
+  const BEACH_BALL = 'Beach Ball';
+  const GLORIOUS_DISASTER = 'Glorious Disaster';
+  const ROOM_TEMPERATURE = 'Room Temperature';
+  const CHERISHED_HEIRLOOM = 'Cherished Heirloom';
+  const FREEZER_BURN = 'Freezer Burn';
+  const NATURAL_SELECTION = 'Natural Selection';
+  const APOCALYPTIC_STORM = 'Apocalyptic Storm';
+  const SPITEFUL_STRENGTH = 'Spiteful Strength';
+  const CHAIN_REACTION = 'Chain Reaction';
+  const SEISMIC_HAMMER = 'Seismic Hammer';
+  const MASTER_CONDUCTOR = 'Master Conductor';
+  const FUNERAL_PYRE = 'Funeral Pyre';
+  const GOLDEN_RULE = 'Golden Rule';
+  const QUEENS_RANSOM = 'Queen\'s Ransom';
+  const SCALDING_VAPOR = 'Scalding Vapor';
+  const THERMAL_DYNAMICS = 'Thermal Dynamics';
+  const KILLER_CURRENT = 'Killer Current';
+  const KINGS_RANSOM = 'King\'s Ransom';
 
   interface Boon {
     name: string;
@@ -66,410 +61,429 @@ export default function Home() {
     god: string;
   }
 
+  const Attack: string = 'Attack';
+  const Special: string = 'Special';
+  const Cast: string = 'Cast';
+  const Dash: string = 'Dash';
+  const Gain: string = 'Gain';
+
+  type Slots = {
+    Attack: Boon | null;
+    Special: Boon | null;
+    Cast: Boon | null;
+    Dash: Boon | null;
+    Gain: Boon | null;
+  }
+
+  const NO_SLOT = 'None';
+
   // Aphrodite Boons
-  const FLUTTER_STRIKE = {
+  const FLUTTER_STRIKE: Boon = {
     name: 'Flutter Strike',
-    slot: ATTACK_SLOT,
-    god: APHRODITE,
+    slot: Attack,
+    god: God.APHRODITE,
   };
-  const FLUTTER_FLOURISH = {
+  const FLUTTER_FLOURISH: Boon = {
     name: 'Flutter Flourish',
-    slot: SPECIAL_SLOT,
-    god: APHRODITE,
+    slot: Special,
+    god: God.APHRODITE,
   };
-  const RAPTURE_RING = {
+  const RAPTURE_RING: Boon = {
     name: 'Rapture Ring',
-    slot: CAST_SLOT,
-    god: APHRODITE,
+    slot: Cast,
+    god: God.APHRODITE,
   };
-  const PASSION_DASH = {
+  const PASSION_DASH: Boon = {
     name: 'Passion Dash',
-    slot: DASH_SLOT,
-    god: APHRODITE,
+    slot: Dash,
+    god: God.APHRODITE,
   };
-  const GLAMOUR_GAIN = {
+  const GLAMOUR_GAIN: Boon = {
     name: 'Glamour Gain',
-    slot: GAIN_SLOT,
-    god: APHRODITE,
+    slot: Gain,
+    god: God.APHRODITE,
   };
-  const SHAMELESS_ATTITUDE = {
+  const SHAMELESS_ATTITUDE: Boon = {
     name: 'Shameless Attitude',
     slot: NO_SLOT,
-    god: APHRODITE,
+    god: God.APHRODITE,
   };
-  const LIFE_AFFIRMATION = {
+  const LIFE_AFFIRMATION: Boon = {
     name: 'Life Affirmation',
     slot: NO_SLOT,
-    god: APHRODITE,
+    god: God.APHRODITE,
   };
-  const HEALTHY_REBOUND = {
+  const HEALTHY_REBOUND: Boon = {
     name: 'Healthy Rebound',
     slot: NO_SLOT,
-    god: APHRODITE,
+    god: God.APHRODITE,
   };
-  const HEART_BREAKER = {
+  const HEART_BREAKER: Boon = {
     name: 'Heart Breaker',
     slot: NO_SLOT,
-    god: APHRODITE,
+    god: God.APHRODITE,
   }
 
   // Apollo Boons
-  const NOVA_STRIKE = {
+  const NOVA_STRIKE: Boon = {
     name: 'Nova Strike',
-    slot: ATTACK_SLOT,
-    god: APOLLO,
+    slot: Attack,
+    god: God.APOLLO,
   };
-  const NOVA_FLOURISH = {
+  const NOVA_FLOURISH: Boon = {
     name: 'Nova Flourish',
-    slot: SPECIAL_SLOT,
-    god: APOLLO,
+    slot: Special,
+    god: God.APOLLO,
   };
-  const SOLAR_RING = {
+  const SOLAR_RING: Boon = {
     name: 'Solar Ring',
-    slot: CAST_SLOT,
-    god: APOLLO,
+    slot: Cast,
+    god: God.APOLLO,
   };
-  const BLINDING_SPRINT = {
+  const BLINDING_SPRINT: Boon = {
     name: 'Blinding Sprint',
-    slot: DASH_SLOT,
-    god: APOLLO,
+    slot: Dash,
+    god: God.APOLLO,
   };
-  const LUCID_GAIN = {
+  const LUCID_GAIN: Boon = {
     name: 'Lucid Gain',
-    slot: GAIN_SLOT,
-    god: APOLLO,
+    slot: Gain,
+    god: God.APOLLO,
   };
-  const SUPER_NOVA = {
+  const SUPER_NOVA: Boon = {
     name: 'Super Nova',
     slot: NO_SLOT,
-    god: APOLLO,
+    god: God.APOLLO,
   };
 
   // Demeter Boons
-  const ICE_STRIKE = {
+  const ICE_STRIKE: Boon = {
     name: 'Ice Strike',
-    slot: ATTACK_SLOT,
-    god: DEMETER,
+    slot: Attack,
+    god: God.DEMETER,
   };
-  const ICE_FLOURISH = {
+  const ICE_FLOURISH: Boon = {
     name: 'Ice Flourish',
-    slot: SPECIAL_SLOT,
-    god: DEMETER,
+    slot: Special,
+    god: God.DEMETER,
   };
-  const ARCTIC_RING = {
+  const ARCTIC_RING: Boon = {
     name: 'Arctic Ring',
-    slot: CAST_SLOT,
-    god: DEMETER,
+    slot: Cast,
+    god: God.DEMETER,
   };
-  const FRIGID_SPRINT = {
+  const FRIGID_SPRINT: Boon = {
     name: 'Frigid Sprint',
-    slot: DASH_SLOT,
-    god: DEMETER,
+    slot: Dash,
+    god: God.DEMETER,
   };
-  const TRANQUIL_GAIN = {
+  const TRANQUIL_GAIN: Boon = {
     name: 'Tranquil Gain',
-    slot: GAIN_SLOT,
-    god: DEMETER,
+    slot: Gain,
+    god: God.DEMETER,
   };
-  const PLENTIFUL_FORAGE = {
+  const PLENTIFUL_FORAGE: Boon = {
     name: 'Plentiful Forage',
     slot: NO_SLOT,
-    god: DEMETER,
+    god: God.DEMETER,
   };
-  const WINTER_COAT = {
+  const WINTER_COAT: Boon = {
     name: 'Winter Coat',
     slot: NO_SLOT,
-    god: DEMETER,
+    god: God.DEMETER,
   };
-  const COLD_STORAGE = {
+  const COLD_STORAGE: Boon = {
     name: 'Cold Storage',
     slot: NO_SLOT,
-    god: DEMETER,
+    god: God.DEMETER,
   };
-  const RARE_CROP = {
+  const RARE_CROP: Boon = {
     name: 'Rare Crop',
     slot: NO_SLOT,
-    god: DEMETER,
+    god: God.DEMETER,
   };
 
   // Hera Boons
-  const SWORN_STRIKE = {
+  const SWORN_STRIKE: Boon = {
     name: 'Sworn Strike',
-    slot: ATTACK_SLOT,
-    god: HERA,
+    slot: Attack,
+    god: God.HERA,
   };
-  const SWORN_FLOURISH = {
+  const SWORN_FLOURISH: Boon = {
     name: 'Sworn Flourish',
-    slot: SPECIAL_SLOT,
-    god: HERA,
+    slot: Special,
+    god: God.HERA,
   };
-  const ENGAGEMENT_RING = {
+  const ENGAGEMENT_RING: Boon = {
     name: 'Engagement Ring',
-    slot: CAST_SLOT,
-    god: HERA,
+    slot: Cast,
+    god: God.HERA,
   };
-  const NEXUS_SPRINT = {
+  const NEXUS_SPRINT: Boon = {
     name: 'Nexus Sprint',
-    slot: DASH_SLOT,
-    god: HERA,
+    slot: Dash,
+    god: God.HERA,
   };
-  const BORN_GAIN = {
+  const BORN_GAIN: Boon = {
     name: 'Born Gain',
-    slot: GAIN_SLOT,
-    god: HERA,
+    slot: Gain,
+    god: God.HERA,
   };
-  const NASTY_COMEBACK = {
+  const NASTY_COMEBACK: Boon = {
     name: 'Nasty Comeback',
     slot: NO_SLOT,
-    god: HERA,
+    god: God.HERA,
   };
-  const BRAVE_FACE = {
+  const BRAVE_FACE: Boon = {
     name: 'Brave Face',
     slot: NO_SLOT,
-    god: HERA,
+    god: God.HERA,
   };
-  const KEEN_INTUITION = {
+  const KEEN_INTUITION: Boon = {
     name: 'Keen Intuition',
     slot: NO_SLOT,
-    god: HERA,
+    god: God.HERA,
   };
 
   // Hestia Boons
-  const FLAME_STRIKE = {
+  const FLAME_STRIKE: Boon = {
     name: 'Flame Strike',
-    slot: ATTACK_SLOT,
-    god: HESTIA,
+    slot: Attack,
+    god: God.HESTIA,
   };
-  const FLAME_FLOURISH = {
+  const FLAME_FLOURISH: Boon = {
     name: 'Flame Flourish',
-    slot: SPECIAL_SLOT,
-    god: HESTIA,
+    slot: Special,
+    god: God.HESTIA,
   };
-  const SMOLDER_RING = {
+  const SMOLDER_RING: Boon = {
     name: 'Smolder Ring',
-    slot: CAST_SLOT,
-    god: HESTIA,
+    slot: Cast,
+    god: God.HESTIA,
   };
-  const SOOT_SPRINT = {
+  const SOOT_SPRINT: Boon = {
     name: 'Soot Sprint',
-    slot: DASH_SLOT,
-    god: HESTIA,
+    slot: Dash,
+    god: God.HESTIA,
   };
-  const HEARTH_GAIN = {
+  const HEARTH_GAIN: Boon = {
     name: 'Hearth Gain',
-    slot: GAIN_SLOT,
-    god: HESTIA,
+    slot: Gain,
+    god: God.HESTIA,
   };
-  const FLAMMABLE_COATING = {
+  const FLAMMABLE_COATING: Boon = {
     name: 'Flammable Coating',
     slot: NO_SLOT,
-    god: HESTIA,
+    god: God.HESTIA,
   };
-  const BURNT_OFFERING = {
+  const BURNT_OFFERING: Boon = {
     name: 'Burnt Offering',
     slot: NO_SLOT,
-    god: HESTIA,
+    god: God.HESTIA,
   };
-  const SPONTANEOUS_COMBUSTION = {
+  const SPONTANEOUS_COMBUSTION: Boon = {
     name: 'Spontaneous Combustion',
     slot: NO_SLOT,
-    god: HESTIA,
+    god: God.HESTIA,
   };
-  const GLOWING_COAL = {
+  const GLOWING_COAL: Boon = {
     name: 'Glowing Coal',
     slot: NO_SLOT,
-    god: HESTIA,
+    god: God.HESTIA,
   };
-  const CONTROLLED_BURN = {
+  const CONTROLLED_BURN: Boon = {
     name: 'Controlled Burn',
     slot: NO_SLOT,
-    god: HESTIA,
+    god: God.HESTIA,
   };
 
   // Hephaestus Boons
-  const VOLCANIC_STRIKE = {
+  const VOLCANIC_STRIKE: Boon = {
     name: 'Volcanic Strike',
-    slot: ATTACK_SLOT,
-    god: HEPHAESTUS,
+    slot: Attack,
+    god: God.HEPHAESTUS,
   };
-  const VOLCANIC_FLOURISH = {
+  const VOLCANIC_FLOURISH: Boon = {
     name: 'Volcanic Flourish',
-    slot: SPECIAL_SLOT,
-    god: HEPHAESTUS,
+    slot: Special,
+    god: God.HEPHAESTUS,
   };
-  const ANVIL_RING = {
+  const ANVIL_RING: Boon = {
     name: 'Anvil Ring',
-    slot: CAST_SLOT,
-    god: HEPHAESTUS,
+    slot: Cast,
+    god: God.HEPHAESTUS,
   };
-  const SMITHY_SPRINT = {
+  const SMITHY_SPRINT: Boon = {
     name: 'Smithy Sprint',
-    slot: DASH_SLOT,
-    god: HEPHAESTUS,
+    slot: Dash,
+    god: God.HEPHAESTUS,
   };
-  const FIXED_GAIN = {
+  const FIXED_GAIN: Boon = {
     name: 'Fixed Gain',
-    slot: GAIN_SLOT,
-    god: HEPHAESTUS,
+    slot: Gain,
+    god: God.HEPHAESTUS,
   };
-  const TRUSTY_SHIELD = {
+  const TRUSTY_SHIELD: Boon = {
     name: 'Trusty Shield',
     slot: NO_SLOT,
-    god: HEPHAESTUS,
+    god: God.HEPHAESTUS,
   };
-  const MINT_CONDITION = {
+  const MINT_CONDITION: Boon = {
     name: 'Mint Condition',
     slot: NO_SLOT,
-    god: HEPHAESTUS,
+    god: God.HEPHAESTUS,
   };
-  const HEAVY_METAL = {
+  const HEAVY_METAL: Boon = {
     name: 'Heavy Metal',
     slot: NO_SLOT,
-    god: HEPHAESTUS,
+    god: God.HEPHAESTUS,
   };
-  const TOUGH_TRADE = {
+  const TOUGH_TRADE: Boon = {
     name: 'Tough Trade',
     slot: NO_SLOT,
-    god: HEPHAESTUS,
+    god: God.HEPHAESTUS,
   };
-  const UNCANNY_FORTITUDE = {
+  const UNCANNY_FORTITUDE: Boon = {
     name: 'Uncanny Fortitude',
     slot: NO_SLOT,
-    god: HEPHAESTUS,
+    god: God.HEPHAESTUS,
   };
 
   // Poseidon Boons
-  const WAVE_STRIKE = {
+  const WAVE_STRIKE: Boon = {
     name: 'Wave Strike',
-    slot: ATTACK_SLOT,
-    god: POSEIDON,
+    slot: Attack,
+    god: God.POSEIDON,
   };
-  const WAVE_FLOURISH = {
+  const WAVE_FLOURISH: Boon = {
     name: 'Wave Flourish',
-    slot: SPECIAL_SLOT,
-    god: POSEIDON,
+    slot: Special,
+    god: God.POSEIDON,
   };
-  const GEYSER_RING = {
+  const GEYSER_RING: Boon = {
     name: 'Geyser Ring',
-    slot: CAST_SLOT,
-    god: POSEIDON,
+    slot: Cast,
+    god: God.POSEIDON,
   };
-  const BREAKER_SPRINT = {
+  const BREAKER_SPRINT: Boon = {
     name: 'Breaker Sprint',
-    slot: DASH_SLOT,
-    god: POSEIDON,
+    slot: Dash,
+    god: God.POSEIDON,
   };
-  const FLUID_GAIN = {
+  const FLUID_GAIN: Boon = {
     name: 'Fluid Gain',
-    slot: GAIN_SLOT,
-    god: POSEIDON,
+    slot: Gain,
+    god: God.POSEIDON,
   };
-  const OCEANS_BOUNTY = {
+  const OCEANS_BOUNTY: Boon = {
     name: 'Ocean\'s Bounty',
     slot: NO_SLOT,
-    god: POSEIDON,
+    god: God.POSEIDON,
   };
-  const SUNKEN_TREASURE = {
+  const SUNKEN_TREASURE: Boon = {
     name: 'Sunken Treasure',
     slot: NO_SLOT,
-    god: POSEIDON,
+    god: God.POSEIDON,
   };
-  const DOUBLE_UP = {
+  const DOUBLE_UP: Boon = {
     name: 'Double Up',
     slot: NO_SLOT,
-    god: POSEIDON,
+    god: God.POSEIDON,
   };
-  const SLIPPERY_SLOPE = {
+  const SLIPPERY_SLOPE: Boon = {
     name: 'Slippery Slope',
     slot: NO_SLOT,
-    god: POSEIDON,
+    god: God.POSEIDON,
   };
 
   // Zeus Boons
-  const HEAVEN_STRIKE = {
+  const HEAVEN_STRIKE: Boon = {
     name: 'Heaven Strike',
-    slot: ATTACK_SLOT,
-    god: ZEUS,
+    slot: Attack,
+    god: God.ZEUS,
   };
-  const HEAVEN_FLOURISH = {
+  const HEAVEN_FLOURISH: Boon = {
     name: 'Heaven Flourish',
-    slot: SPECIAL_SLOT,
-    god: ZEUS,
+    slot: Special,
+    god: God.ZEUS,
   };
-  const STORM_RING = {
+  const STORM_RING: Boon = {
     name: 'Storm Ring',
-    slot: CAST_SLOT,
-    god: ZEUS,
+    slot: Cast,
+    god: God.ZEUS,
   };
-  const THUNDER_SPRINT = {
+  const THUNDER_SPRINT: Boon = {
     name: 'Thunder Sprint',
-    slot: DASH_SLOT,
-    god: ZEUS,
+    slot: Dash,
+    god: God.ZEUS,
   };
-  const STATIC_SHOCK = {
+  const STATIC_SHOCK: Boon = {
     name: 'Static Shock',
     slot: NO_SLOT,
-    god: ZEUS,
+    god: God.ZEUS,
   };
-  const IONIC_GAIN = {
+  const IONIC_GAIN: Boon = {
     name: 'Ionic Gain',
-    slot: GAIN_SLOT,
-    god: ZEUS,
+    slot: Gain,
+    god: God.ZEUS,
   };
-  const DIVINE_VENGEANCE = {
+  const DIVINE_VENGEANCE: Boon = {
     name: 'Divine Vengeance',
     slot: NO_SLOT,
-    god: ZEUS,
+    god: God.ZEUS,
   };
-  const LIGHTNING_LANCE = {
+  const LIGHTNING_LANCE: Boon = {
     name: 'Lightning Lance',
     slot: NO_SLOT,
-    god: ZEUS,
+    god: God.ZEUS,
   };
 
-
-  const duoBoons = [
-    { gods: [APHRODITE, APOLLO], boon: SUNNY_DISPOSITION, requirements: [[NOVA_STRIKE, NOVA_FLOURISH, SOLAR_RING, LUCID_GAIN], [HEART_BREAKER]] },
-    { gods: [APHRODITE, DEMETER], boon: HEARTY_APPETITE, requirements: [[SHAMELESS_ATTITUDE, LIFE_AFFIRMATION, HEALTHY_REBOUND], [PLENTIFUL_FORAGE, WINTER_COAT]] },
-    { gods: [APHRODITE, HEPHAESTUS], boon: SOFT_CARESS, requirements: [[RAPTURE_RING, PASSION_DASH, GLAMOUR_GAIN], [ANVIL_RING, SMITHY_SPRINT, FIXED_GAIN]] },
-    { gods: [APHRODITE, HERA], boon: SOUL_MATE, requirements: [[RAPTURE_RING, PASSION_DASH, GLAMOUR_GAIN], [SWORN_STRIKE, SWORN_FLOURISH, NEXUS_SPRINT, NASTY_COMEBACK]] },
-    { gods: [APHRODITE, HESTIA], boon: BURNING_DESIRE, requirements: [[RAPTURE_RING, PASSION_DASH, GLAMOUR_GAIN], [SMOLDER_RING, SOOT_SPRINT, HEARTH_GAIN]] },
-    { gods: [APHRODITE, POSEIDON], boon: ISLAND_GETAWAY, requirements: [[FLUTTER_STRIKE, FLUTTER_FLOURISH], [WAVE_STRIKE, WAVE_FLOURISH, GEYSER_RING, BREAKER_SPRINT]] },
-    { gods: [APHRODITE, ZEUS], boon: ROMANTIC_SPARK, requirements: [[PASSION_DASH, FLUTTER_STRIKE, FLUTTER_FLOURISH, RAPTURE_RING], [HEAVEN_STRIKE, HEAVEN_FLOURISH]] },
-    { gods: [APOLLO, DEMETER], boon: TORRENTIAL_DOWNPOUR, requirements: [[ARCTIC_RING, FRIGID_SPRINT, TRANQUIL_GAIN], [SOLAR_RING, BLINDING_SPRINT, LUCID_GAIN]] },
-    { gods: [APOLLO, HEPHAESTUS], boon: STELLAR_SLAM, requirements: [[NOVA_STRIKE, NOVA_FLOURISH, SUPER_NOVA], [VOLCANIC_STRIKE, VOLCANIC_FLOURISH, SMITHY_SPRINT]] },
-    { gods: [APOLLO, HERA], boon: SUN_WORSHIPER, requirements: [[SOLAR_RING, BLINDING_SPRINT, LUCID_GAIN], [ENGAGEMENT_RING, NEXUS_SPRINT, BORN_GAIN]] },
-    { gods: [APOLLO, HESTIA], boon: PHOENIX_SKIN, requirements: [[NOVA_STRIKE, NOVA_FLOURISH, LUCID_GAIN], [FLAME_STRIKE, FLAME_FLOURISH, SMOLDER_RING], [BURNT_OFFERING, FLAMMABLE_COATING, HEARTH_GAIN]] },
-    { gods: [APOLLO, POSEIDON], boon: BEACH_BALL, requirements: [[BLINDING_SPRINT, LUCID_GAIN], [BREAKER_SPRINT, FLUID_GAIN]] },
-    { gods: [APOLLO, ZEUS], boon: GLORIOUS_DISASTER, requirements: [[SOLAR_RING], [HEAVEN_STRIKE, HEAVEN_FLOURISH, THUNDER_SPRINT]] },
-    { gods: [DEMETER, HEPHAESTUS], boon: ROOM_TEMPERATURE, requirements: [[ICE_STRIKE, ICE_FLOURISH], [VOLCANIC_STRIKE, VOLCANIC_FLOURISH, SMITHY_SPRINT]] },
-    { gods: [DEMETER, HERA], boon: CHERISHED_HEIRLOOM, requirements: [[ARCTIC_RING, FRIGID_SPRINT, TRANQUIL_GAIN], [ENGAGEMENT_RING, NEXUS_SPRINT, BORN_GAIN]] },
-    { gods: [DEMETER, HESTIA], boon: FREEZER_BURN, requirements: [[ICE_STRIKE, ICE_FLOURISH], [FLAME_STRIKE, FLAME_FLOURISH]] },
-    { gods: [DEMETER, POSEIDON], boon: NATURAL_SELECTION, requirements: [[FRIGID_SPRINT, TRANQUIL_GAIN, WINTER_COAT, COLD_STORAGE, RARE_CROP], [BREAKER_SPRINT, FLUID_GAIN, OCEANS_BOUNTY, SUNKEN_TREASURE, DOUBLE_UP]] },
-    { gods: [DEMETER, ZEUS], boon: APOCALYPTIC_STORM, requirements: [[ICE_STRIKE, ICE_FLOURISH, ARCTIC_RING, FRIGID_SPRINT], [HEAVEN_STRIKE, HEAVEN_FLOURISH]] },
-    { gods: [HEPHAESTUS, HERA], boon: SPITEFUL_STRENGTH, requirements: [[TRUSTY_SHIELD, MINT_CONDITION, HEAVY_METAL, TOUGH_TRADE, UNCANNY_FORTITUDE, FIXED_GAIN], [BRAVE_FACE, NASTY_COMEBACK, KEEN_INTUITION, BORN_GAIN]] },
-    { gods: [HEPHAESTUS, HESTIA], boon: CHAIN_REACTION, requirements: [[VOLCANIC_STRIKE, VOLCANIC_FLOURISH], [FLAME_STRIKE, FLAME_FLOURISH, SMOLDER_RING]] },
-    { gods: [HEPHAESTUS, POSEIDON], boon: SEISMIC_HAMMER, requirements: [[VOLCANIC_STRIKE, VOLCANIC_FLOURISH, SMITHY_SPRINT], [GEYSER_RING]] },
-    { gods: [HEPHAESTUS, ZEUS], boon: MASTER_CONDUCTOR, requirements: [[FIXED_GAIN, TRUSTY_SHIELD, HEAVY_METAL, MINT_CONDITION, TOUGH_TRADE], [STATIC_SHOCK]] },
-    { gods: [HERA, HESTIA], boon: FUNERAL_PYRE, requirements: [[SWORN_STRIKE, SWORN_FLOURISH, ENGAGEMENT_RING, BORN_GAIN], [FLAME_STRIKE, FLAME_FLOURISH, SMOLDER_RING, HEARTH_GAIN]] },
-    { gods: [HERA, POSEIDON], boon: GOLDEN_RULE, requirements: [[ENGAGEMENT_RING, NEXUS_SPRINT, BORN_GAIN], [GEYSER_RING, BREAKER_SPRINT, FLUID_GAIN], [OCEANS_BOUNTY, DOUBLE_UP]] },
-    { gods: [HERA, ZEUS], boon: QUEENS_RANSOM, requirements: [[SWORN_STRIKE, SWORN_FLOURISH, ENGAGEMENT_RING, NEXUS_SPRINT, BORN_GAIN], [HEAVEN_STRIKE, HEAVEN_FLOURISH, STORM_RING, THUNDER_SPRINT, IONIC_GAIN]] },
-    { gods: [HESTIA, POSEIDON], boon: SCALDING_VAPOR, requirements: [[FLAME_STRIKE, FLAME_FLOURISH, SMOLDER_RING, SPONTANEOUS_COMBUSTION, CONTROLLED_BURN, GLOWING_COAL], [SLIPPERY_SLOPE]] },
-    { gods: [HESTIA, ZEUS], boon: THERMAL_DYNAMICS, requirements: [[FLAME_STRIKE, FLAME_FLOURISH], [HEAVEN_STRIKE, HEAVEN_FLOURISH]] },
-    { gods: [POSEIDON, ZEUS], boon: KILLER_CURRENT, requirements: [[SLIPPERY_SLOPE], [HEAVEN_STRIKE, HEAVEN_FLOURISH, STORM_RING, THUNDER_SPRINT, DIVINE_VENGEANCE, LIGHTNING_LANCE]] },
-    { gods: [ZEUS, HERA], boon: KINGS_RANSOM, requirements: [[HEAVEN_STRIKE, HEAVEN_FLOURISH, STORM_RING, THUNDER_SPRINT, IONIC_GAIN], [SWORN_STRIKE, SWORN_FLOURISH, ENGAGEMENT_RING, NEXUS_SPRINT, BORN_GAIN]] },
-  ];
-
-  interface Slots {
-    [ATTACK_SLOT]: Boon | null;
-    [SPECIAL_SLOT]: Boon | null;
-    [CAST_SLOT]: Boon | null;
-    [DASH_SLOT]: Boon | null;
-    [GAIN_SLOT]: Boon | null;
+  interface DuoBoon {
+    gods: [God, God];
+    boon: string;
+    requirements: [Boon[], Boon[]];
   }
 
+  const duoBoons = [
+    { gods: [God.APHRODITE, God.APOLLO], boon: SUNNY_DISPOSITION, requirements: [[NOVA_STRIKE, NOVA_FLOURISH, SOLAR_RING, LUCID_GAIN], [HEART_BREAKER]] },
+    { gods: [God.APHRODITE, God.DEMETER], boon: HEARTY_APPETITE, requirements: [[SHAMELESS_ATTITUDE, LIFE_AFFIRMATION, HEALTHY_REBOUND], [PLENTIFUL_FORAGE, WINTER_COAT]] },
+    { gods: [God.APHRODITE, God.HEPHAESTUS], boon: SOFT_CARESS, requirements: [[RAPTURE_RING, PASSION_DASH, GLAMOUR_GAIN], [ANVIL_RING, SMITHY_SPRINT, FIXED_GAIN]] },
+    { gods: [God.APHRODITE, God.HERA], boon: SOUL_MATE, requirements: [[RAPTURE_RING, PASSION_DASH, GLAMOUR_GAIN], [SWORN_STRIKE, SWORN_FLOURISH, NEXUS_SPRINT, NASTY_COMEBACK]] },
+    { gods: [God.APHRODITE, God.HESTIA], boon: BURNING_DESIRE, requirements: [[RAPTURE_RING, PASSION_DASH, GLAMOUR_GAIN], [SMOLDER_RING, SOOT_SPRINT, HEARTH_GAIN]] },
+    { gods: [God.APHRODITE, God.POSEIDON], boon: ISLAND_GETAWAY, requirements: [[FLUTTER_STRIKE, FLUTTER_FLOURISH], [WAVE_STRIKE, WAVE_FLOURISH, GEYSER_RING, BREAKER_SPRINT]] },
+    { gods: [God.APHRODITE, God.ZEUS], boon: ROMANTIC_SPARK, requirements: [[PASSION_DASH, FLUTTER_STRIKE, FLUTTER_FLOURISH, RAPTURE_RING], [HEAVEN_STRIKE, HEAVEN_FLOURISH]] },
+    { gods: [God.APOLLO, God.DEMETER], boon: TORRENTIAL_DOWNPOUR, requirements: [[ARCTIC_RING, FRIGID_SPRINT, TRANQUIL_GAIN], [SOLAR_RING, BLINDING_SPRINT, LUCID_GAIN]] },
+    { gods: [God.APOLLO, God.HEPHAESTUS], boon: STELLAR_SLAM, requirements: [[NOVA_STRIKE, NOVA_FLOURISH, SUPER_NOVA], [VOLCANIC_STRIKE, VOLCANIC_FLOURISH, SMITHY_SPRINT]] },
+    { gods: [God.APOLLO, God.HERA], boon: SUN_WORSHIPER, requirements: [[SOLAR_RING, BLINDING_SPRINT, LUCID_GAIN], [ENGAGEMENT_RING, NEXUS_SPRINT, BORN_GAIN]] },
+    { gods: [God.APOLLO, God.HESTIA], boon: PHOENIX_SKIN, requirements: [[NOVA_STRIKE, NOVA_FLOURISH, LUCID_GAIN], [FLAME_STRIKE, FLAME_FLOURISH, SMOLDER_RING], [BURNT_OFFERING, FLAMMABLE_COATING, HEARTH_GAIN]] },
+    { gods: [God.APOLLO, God.POSEIDON], boon: BEACH_BALL, requirements: [[BLINDING_SPRINT, LUCID_GAIN], [BREAKER_SPRINT, FLUID_GAIN]] },
+    { gods: [God.APOLLO, God.ZEUS], boon: GLORIOUS_DISASTER, requirements: [[SOLAR_RING], [HEAVEN_STRIKE, HEAVEN_FLOURISH, THUNDER_SPRINT]] },
+    { gods: [God.DEMETER, God.HEPHAESTUS], boon: ROOM_TEMPERATURE, requirements: [[ICE_STRIKE, ICE_FLOURISH], [VOLCANIC_STRIKE, VOLCANIC_FLOURISH, SMITHY_SPRINT]] },
+    { gods: [God.DEMETER, God.HERA], boon: CHERISHED_HEIRLOOM, requirements: [[ARCTIC_RING, FRIGID_SPRINT, TRANQUIL_GAIN], [ENGAGEMENT_RING, NEXUS_SPRINT, BORN_GAIN]] },
+    { gods: [God.DEMETER, God.HESTIA], boon: FREEZER_BURN, requirements: [[ICE_STRIKE, ICE_FLOURISH], [FLAME_STRIKE, FLAME_FLOURISH]] },
+    { gods: [God.DEMETER, God.POSEIDON], boon: NATURAL_SELECTION, requirements: [[FRIGID_SPRINT, TRANQUIL_GAIN, WINTER_COAT, COLD_STORAGE, RARE_CROP], [BREAKER_SPRINT, FLUID_GAIN, OCEANS_BOUNTY, SUNKEN_TREASURE, DOUBLE_UP]] },
+    { gods: [God.DEMETER, God.ZEUS], boon: APOCALYPTIC_STORM, requirements: [[ICE_STRIKE, ICE_FLOURISH, ARCTIC_RING, FRIGID_SPRINT], [HEAVEN_STRIKE, HEAVEN_FLOURISH]] },
+    { gods: [God.HEPHAESTUS, God.HERA], boon: SPITEFUL_STRENGTH, requirements: [[TRUSTY_SHIELD, MINT_CONDITION, HEAVY_METAL, TOUGH_TRADE, UNCANNY_FORTITUDE, FIXED_GAIN], [BRAVE_FACE, NASTY_COMEBACK, KEEN_INTUITION, BORN_GAIN]] },
+    { gods: [God.HEPHAESTUS, God.HESTIA], boon: CHAIN_REACTION, requirements: [[VOLCANIC_STRIKE, VOLCANIC_FLOURISH], [FLAME_STRIKE, FLAME_FLOURISH, SMOLDER_RING]] },
+    { gods: [God.HEPHAESTUS, God.POSEIDON], boon: SEISMIC_HAMMER, requirements: [[VOLCANIC_STRIKE, VOLCANIC_FLOURISH, SMITHY_SPRINT], [GEYSER_RING]] },
+    { gods: [God.HEPHAESTUS, God.ZEUS], boon: MASTER_CONDUCTOR, requirements: [[FIXED_GAIN, TRUSTY_SHIELD, HEAVY_METAL, MINT_CONDITION, TOUGH_TRADE], [STATIC_SHOCK]] },
+    { gods: [God.HERA, God.HESTIA], boon: FUNERAL_PYRE, requirements: [[SWORN_STRIKE, SWORN_FLOURISH, ENGAGEMENT_RING, BORN_GAIN], [FLAME_STRIKE, FLAME_FLOURISH, SMOLDER_RING, HEARTH_GAIN]] },
+    { gods: [God.HERA, God.POSEIDON], boon: GOLDEN_RULE, requirements: [[ENGAGEMENT_RING, NEXUS_SPRINT, BORN_GAIN], [GEYSER_RING, BREAKER_SPRINT, FLUID_GAIN], [OCEANS_BOUNTY, DOUBLE_UP]] },
+    { gods: [God.HERA, God.ZEUS], boon: QUEENS_RANSOM, requirements: [[SWORN_STRIKE, SWORN_FLOURISH, ENGAGEMENT_RING, NEXUS_SPRINT, BORN_GAIN], [HEAVEN_STRIKE, HEAVEN_FLOURISH, STORM_RING, THUNDER_SPRINT, IONIC_GAIN]] },
+    { gods: [God.HESTIA, God.POSEIDON], boon: SCALDING_VAPOR, requirements: [[FLAME_STRIKE, FLAME_FLOURISH, SMOLDER_RING, SPONTANEOUS_COMBUSTION, CONTROLLED_BURN, GLOWING_COAL], [SLIPPERY_SLOPE]] },
+    { gods: [God.HESTIA, God.ZEUS], boon: THERMAL_DYNAMICS, requirements: [[FLAME_STRIKE, FLAME_FLOURISH], [HEAVEN_STRIKE, HEAVEN_FLOURISH]] },
+    { gods: [God.POSEIDON, God.ZEUS], boon: KILLER_CURRENT, requirements: [[SLIPPERY_SLOPE], [HEAVEN_STRIKE, HEAVEN_FLOURISH, STORM_RING, THUNDER_SPRINT, DIVINE_VENGEANCE, LIGHTNING_LANCE]] },
+    { gods: [God.ZEUS, God.HERA], boon: KINGS_RANSOM, requirements: [[HEAVEN_STRIKE, HEAVEN_FLOURISH, STORM_RING, THUNDER_SPRINT, IONIC_GAIN], [SWORN_STRIKE, SWORN_FLOURISH, ENGAGEMENT_RING, NEXUS_SPRINT, BORN_GAIN]] },
+  ];
+
   const [selectedGods, setSelectedGods] = useState<string[]>([]);
-  const [slots, setSlots] = useState<Slots>({ [ATTACK_SLOT]: null, [SPECIAL_SLOT]: null, [CAST_SLOT]: null, [DASH_SLOT]: null, [GAIN_SLOT]: null });
+  const [slots, setSlots] = useState<Slots>({
+    Attack: null,
+    Special: null,
+    Cast: null,
+    Dash: null,
+    Gain: null
+  });
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
@@ -550,6 +564,7 @@ export default function Home() {
                         {
                           requirement.map((r) => (
                             <button
+                              key={r.name}
                               className={`mr-2 mb-2 px-4 py-2 rounded-lg bg-gray-300 text-black ${slots[r.slot] === r.name ? 'bg-blue-600 text-white' : ''}`}
                               onClick={() => {
                                 if (r.slot === NO_SLOT) return;
