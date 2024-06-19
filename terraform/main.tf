@@ -1,5 +1,3 @@
-variable "namecheap_username" {}
-variable "namecheap_api_key" {}
 variable "master_billing_account" {}
 
 provider "google" {
@@ -14,6 +12,12 @@ resource "google_billing_project_info" "project_billing" {
 resource "google_service_account" "main_sa" {
   account_id   = "main-sa"
   display_name = "Main SA"
+}
+
+resource "google_storage_bucket_iam_member" "bucket_iam" {
+  bucket = google_storage_bucket.static_site.name
+  role   = "roles/storage.objects.create"
+  member = "main-sa@hades-426108.iam.gserviceaccount.com"
 }
 
 resource "google_storage_bucket" "static_site" {
@@ -43,21 +47,4 @@ resource "google_storage_bucket_iam_binding" "public_access" {
   members = [
     "allUsers"
   ]
-}
-
-provider "namecheap" {
-  user_name = var.namecheap_username
-  api_user  = var.namecheap_username
-  api_key   = var.namecheap_api_key
-}
-
-resource "namecheap_domain_records" "subdomain" {
-  domain = "atamayo.io"
-  mode   = "MERGE"
-
-  record {
-    hostname = "hades"
-    type     = "CNAME"
-    address  = "c.storage.googleapis.com"
-  }
 }
