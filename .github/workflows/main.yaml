@@ -1,9 +1,5 @@
 name: Build and Deploy
 
-strategy:
-  matrix:
-    node-version: ['21.4.0']
-
 on:
   push:
     branches:
@@ -21,10 +17,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup NodeJS ${{ matrix.node-version }}
+      - name: Setup NodeJS '21.4.0'
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '21.4.0'
 
       - name: Install dependencies and build NextJS app
         run: |
