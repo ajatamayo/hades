@@ -67,13 +67,17 @@ export default function Home() {
   const Dash: string = 'Dash';
   const Gain: string = 'Gain';
 
-  type Slots = {
-    Attack: Boon | null;
-    Special: Boon | null;
-    Cast: Boon | null;
-    Dash: Boon | null;
-    Gain: Boon | null;
+  interface IStringIndex {
+    [key: string]: Boon | null;
   }
+
+  const Slots: IStringIndex = {
+    Attack: null,
+    Special: null,
+    Cast: null,
+    Dash: null,
+    Gain: null,
+  };
 
   const NO_SLOT = 'None';
 
@@ -477,7 +481,7 @@ export default function Home() {
   ];
 
   const [selectedGods, setSelectedGods] = useState<string[]>([]);
-  const [slots, setSlots] = useState<Slots>({
+  const [slots, setSlots] = useState<typeof Slots>({
     Attack: null,
     Special: null,
     Cast: null,
@@ -565,7 +569,8 @@ export default function Home() {
                           requirement.map((r) => (
                             <button
                               key={r.name}
-                              className={`mr-2 mb-2 px-4 py-2 rounded-lg bg-gray-300 text-black ${slots[r.slot] === r.name ? 'bg-blue-600 text-white' : ''}`}
+                              className={`mr-2 mb-2 px-4 py-2 rounded-lg bg-gray-300 text-black ${slots[r.slot] === r ? 'bg-blue-600 text-white' : ''}`}
+
                               onClick={() => {
                                 if (r.slot === NO_SLOT) return;
                                 setSlots(prevSlots => ({
