@@ -16,8 +16,8 @@ resource "google_service_account" "main_sa" {
 
 resource "google_storage_bucket_iam_member" "bucket_iam" {
   bucket = google_storage_bucket.static_site.name
-  role   = "roles/storage.objects.create"
-  member = "main-sa@hades-426108.iam.gserviceaccount.com"
+  role   = "roles/storage.objectCreator"
+  member = "serviceAccount:main-sa@hades-426108.iam.gserviceaccount.com"
 }
 
 resource "google_storage_bucket" "static_site" {
