@@ -9,6 +9,13 @@ resource "google_billing_project_info" "project_billing" {
   billing_account = var.master_billing_account
 }
 
+resource "google_project_service" "project" {
+  project = "hades-426108"
+  service = "compute.googleapis.com"
+
+  disable_on_destroy = false
+}
+
 resource "google_service_account" "main_sa" {
   account_id   = "main-sa"
   display_name = "Main SA"
