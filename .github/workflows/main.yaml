@@ -4,14 +4,15 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: 'read'
-      id-token: 'write'
+      contents: "read"
+      id-token: "write"
 
     steps:
       - name: Checkout code
@@ -20,7 +21,7 @@ jobs:
       - name: Setup NodeJS '21.4.0'
         uses: actions/setup-node@v4
         with:
-          node-version: '21.4.0'
+          node-version: "21.4.0"
 
       - name: Install dependencies and build NextJS app
         run: |
@@ -28,13 +29,13 @@ jobs:
           npm run build
 
       - name: Authenticate to GCP
-        uses: 'google-github-actions/auth@v2'
+        uses: "google-github-actions/auth@v2"
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Deploy to Google Cloud Storage
-        uses: 'google-github-actions/upload-cloud-storage@v2'
+        uses: "google-github-actions/upload-cloud-storage@v2"
         with:
-          path: 'out'
-          destination: 'hades-website'
+          path: "out"
+          destination: "hades-website"
           parent: false
