@@ -28,7 +28,7 @@ resource "google_storage_bucket_iam_member" "bucket_iam" {
 }
 
 resource "google_storage_bucket" "static_site" {
-  name     = "hades-website"
+  name     = "hades-website.atamayo.io"
   location = "US"
 
   force_destroy = true
